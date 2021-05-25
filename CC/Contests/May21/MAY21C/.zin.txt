@@ -1,0 +1,10 @@
+3
+XOX
+XXO
+O_O
+XXX
+OOO
+___
+XOX
+OX_
+XO_
