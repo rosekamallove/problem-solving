@@ -17,26 +17,37 @@ template <class T>          void _print(set <T> v);
 template <class T, class V> void _print(map <T, V> v);
 template <class T>          void _print(multiset <T> v);
 template<typename... T>     void read(T&... args);
-template<typename... T>     void write(string delimiter, T &&...args);
-template<typename T>        void readContainer(T &t);
-template<typename T>        void writeContainer(string delimiter, T &t);
+template<typename... T>     void write(T&... args);
 //----------------------------------------------------------------------------------------------------//
+//
+int maxElement(vector<int> v, int strt, int end){
+    int mx(0);
+    for(int i=strt; i<end; i++){
+        mx = max(mx, v[i]);
+    }
+    return mx;
+}
 
 void solve(){
-    int n, pairs(0); cin>>n;
-    vector<int> v(n+1);
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-        v[i] -= i;
+    int n; read(n);
+    int mxlen(0), len(0);
+    vector<int> v(n);
+    for(int i=0; i<n; i++){
+        read(v[i]);
     }
-    map<int, int> mp;
-    for(int i=1; i<=n; i++){
-        if(mp.find(v[i]) != mp.end()){
-            pairs += mp[v[i]];
-        }
-        mp[v[i]]++;
+
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            int maxEl = maxElement(v, i, j);
+            if(v[i] - v[j] >= maxEl){
+                len++;
+                mxlen = max(len, mxlen);
+            }else{
+                len = 0;
+            }
+        }           
     }
-    cout<<pairs<<endl;
+    write(mxlen, endl);
 }
 
 signed main(){
@@ -57,29 +68,14 @@ signed main(){
 
 
 //----------------------------------------------------------------------------------------------------//
-template <typename... T>
-void read(T &...args) {
-    ((cin >> args), ...);
+template<typename... T>
+void read(T&... args){
+    ((cin>>args), ...);
 }
 
-template <typename... T>
-void write(string delimiter, T &&...args) {
-    ((cout << args << delimiter), ...);
-}
-
-template <typename T>
-void readContainer(T &t) {
-    for (auto &e : t) {
-        read(e);
-    }
-}
-
-template <typename T>
-void writeContainer(string delimiter, T &t) {
-    for (const auto &e : t) {
-        write(delimiter, e);
-    }
-    write("\n");
+template<typename... T>
+void write(T&... args){
+    ((cout<<args<<' '), ...);
 }
 
 template<typename T> 

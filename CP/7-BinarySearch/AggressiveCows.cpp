@@ -22,21 +22,39 @@ template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-void solve(){
-    int n, pairs(0); cin>>n;
-    vector<int> v(n+1);
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-        v[i] -= i;
-    }
-    map<int, int> mp;
-    for(int i=1; i<=n; i++){
-        if(mp.find(v[i]) != mp.end()){
-            pairs += mp[v[i]];
+bool canBePlaced(vector<int> &stallLocation, int dist, int c){
+    int lastPosition = -1;
+    int cws = c;
+    for(int i=0; i<stallLocation.size(); ++i){
+        if(stallLocation[i] - lastPosition >= dist or lastPosition == -1){
+            cws--;
+            lastPosition = stallLocation[i];
         }
-        mp[v[i]]++;
+        if(cws == 0) 
+            break;
     }
-    cout<<pairs<<endl;
+    return cws == 0;
+}
+
+void solve(){
+    int n,c; read(n,c);
+    vector<int> stallLocation(n);
+    readContainer(stallLocation);
+    sort(stallLocation.begin(), stallLocation.end());
+    int lo(0), hi(1e9);
+    while(hi - lo > 1){
+        int mid = (lo + hi)/2;
+        if(canBePlaced(stallLocation, mid, c)){
+            lo = mid;
+        } else {
+            hi = mid - 1;
+        }
+    }
+    if(canBePlaced(stallLocation, hi, c)){
+        cout<<hi<<endl;
+    } else {
+        cout<<lo<<endl;
+    }
 }
 
 signed main(){

@@ -1,4 +1,4 @@
-#include "bits/stdc++.h" 
+#include "bits/stdc++.h"
 using namespace std;
 
 #define int long long
@@ -22,37 +22,55 @@ template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-void solve(){
-    int n, pairs(0); cin>>n;
-    vector<int> v(n+1);
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-        v[i] -= i;
+void solve() {
+    int n; read(n);
+    if(n == 1){
+        cout<<1<<endl;
+        return;
     }
-    map<int, int> mp;
+    if(n == 2){
+        cout<<-1<<endl;
+        return;
+    }
+    int even(2), odd(1);
+    vector<vector<int>> a(n+1, vector<int> (n+1));
+
     for(int i=1; i<=n; i++){
-        if(mp.find(v[i]) != mp.end()){
-            pairs += mp[v[i]];
+        for(int j=1; j<=n; j++){
+            if(i+j <= (n*n - 1 )/2 and even <= n*n){
+                a[i][j] = even;
+                even += 2;
+            } else if (odd <= n*n) {
+                a[i][j] = odd;
+                odd += 2;
+            }
         }
-        mp[v[i]]++;
     }
-    cout<<pairs<<endl;
+
+    for(int i=1; i<=n; i++){
+        for(int j=1; j<=n; j++){
+            cout<<a[i][j]<<' ';
+        }
+        cout<<endl;
+    }
+    cout<<endl;
 }
 
-signed main(){
-/**************************************/
+signed main() {
+    /**************************************/
 #ifndef ONLINE_JUDGE
-	freopen(".deb.txt", "w", stderr);
+    freopen(".deb.txt", "w", stderr);
 #endif
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-/**************************************/
+    /**************************************/
     int T;
     cin >> T;
-    while (T--){
+    while (T--) {
         solve();
     }
+    cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
 }
 
 
@@ -82,12 +100,12 @@ void writeContainer(string delimiter, T &t) {
     write("\n");
 }
 
-template<typename T> 
+template<typename T>
 void _print(T n) {
     cerr << n;
 }
 
-template<typename T> 
+template<typename T>
 void _print(vector<T> v) {
     cerr << '[';
     for (auto val : v) {
@@ -96,37 +114,38 @@ void _print(vector<T> v) {
     }
     cerr << ']';
 }
-template <class T, class V> 
+template <class T, class V>
 void _print(pair <T, V> p) {
-    cerr << "{"; 
-    _print(p.first); 
-    cerr << ","; 
-    _print(p.second); 
+    cerr << "{";
+    _print(p.first);
+    cerr << ",";
+    _print(p.second);
     cerr << "}";
 }
 
-template <class T> 
+template <class T>
 void _print(set <T> v) {
-    cerr << "[ "; 
+    cerr << "[ ";
     for (T i : v) {
-        _print(i); 
+        _print(i);
         cerr << " ";
-    } 
+    }
     cerr << "]";
 }
 template <class T> void _print(multiset <T> v) {
-    cerr << "[ "; 
+    cerr << "[ ";
     for (T i : v) {
-        _print(i); 
+        _print(i);
         cerr << " ";
-    } cerr << "]";}
-
-template <class T, class V> void _print(map <T, V> v){
-    cerr << "[ "; 
-    for (auto i : v) {
-        _print(i); 
-        cerr << " ";
-    } 
+    }
     cerr << "]";
 }
 
+template <class T, class V> void _print(map <T, V> v) {
+    cerr << "[ ";
+    for (auto i : v) {
+        _print(i);
+        cerr << " ";
+    }
+    cerr << "]";
+}

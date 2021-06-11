@@ -3,8 +3,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main()
-{
+int main(){
   /* we can use hash array to do the question in O(n), then why do we need maps?
    * The problem wiht hasArray approach:
    * 1. Too much memory waste.
@@ -16,16 +15,14 @@ int main()
   map<long long int,int> m;
   int n; cin>>n;
   int a[n];
-  for(int i=0; i<n; i++)
-  {
+  for(int i=0; i<n; i++){
     cin>>a[i];
     m[a[i]]++;//to insert n elements it will take nlog(n) time
   }
 
   map<long long int,int> :: iterator it;
 
-  for(it = m.begin(); it!=m.end(); it++)
-  {
+  for(it = m.begin(); it!=m.end(); ++it){
     cout<<it->first<<" "<<it->second<<endl;
   }
 /*

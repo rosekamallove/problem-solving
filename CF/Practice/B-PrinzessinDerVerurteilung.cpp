@@ -23,20 +23,72 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void solve(){
-    int n, pairs(0); cin>>n;
-    vector<int> v(n+1);
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-        v[i] -= i;
+    int n;
+    string s;
+    read(n,s);
+
+    vector<int> count(26, 0); /* simple hash array */
+    for(int i=0; i<n; i++){
+        count[s[i] - 'a'] = 1;
+        deb(s[i] - 'a');
     }
-    map<int, int> mp;
-    for(int i=1; i<=n; i++){
-        if(mp.find(v[i]) != mp.end()){
-            pairs += mp[v[i]];
+
+    /* Iterating from a => z */
+    for(int i=0; i<26; i++){
+        if(count[i] == 0){
+            cout<<(char)('a' + i)<<endl;
+            return;
         }
-        mp[v[i]]++;
     }
-    cout<<pairs<<endl;
+
+    {// A new thing that i Learned about scoping.
+
+        set<string> st; /* Stores all the 2 length substring of the string s */
+        for(int i=0; i<n-1; i++){
+            string temp = "";
+            temp += s[i];
+            temp += s[i+1];
+            deb(temp);
+            st.insert(temp);
+        }
+        deb(st);
+        /* Iterating for all the two digit substrings aa => az */
+        for(int i=0; i<26; i++){
+            for(int j=0; j<26; j++){
+                string temp = "";
+                temp += (char)('a' + i);
+                temp += (char)('a' + j);
+                deb(temp);
+                if(st.find(temp) == st.end()){
+                    cout<<temp<<endl;
+                    return;
+                }
+            }
+        }
+    }
+    {
+        /* For substring of length 3 */
+        set<string> st;
+        for(int i=0; i<n-2; i++){
+            string temp = "";
+            temp += s[i];
+            temp += s[i + 1];
+            temp += s[i + 2];
+            st.insert(temp);
+        }
+        /* Iterating for all the 3 length substring but with the first char fixed to 'a' */
+        for(int i=0; i<26; i++){
+            for(int j=0; j<26; j++){
+                string temp = "a";
+                temp += (char)('a' + i);
+                temp += (char)('a' + j);
+                if(st.find(temp) == st.end()){
+                    cout<<temp<<endl;
+                    return;
+                }
+            }
+        }
+    }
 }
 
 signed main(){

@@ -23,20 +23,9 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void solve(){
-    int n, pairs(0); cin>>n;
-    vector<int> v(n+1);
-    for(int i=1; i<=n; i++){
-        cin>>v[i];
-        v[i] -= i;
-    }
-    map<int, int> mp;
-    for(int i=1; i<=n; i++){
-        if(mp.find(v[i]) != mp.end()){
-            pairs += mp[v[i]];
-        }
-        mp[v[i]]++;
-    }
-    cout<<pairs<<endl;
+    int n; read(n);
+    vector<int> v(n);
+    readContainer(v);
 }
 
 signed main(){
