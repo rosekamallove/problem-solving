@@ -1,8 +1,0 @@
-1,3c1,3
-< part
-< pawripartipawri
-< yemaihuyemericarhaiauryahapawrihorahihai
----
-> parts
-> pawripartipawris
-> yemaihuyemericarhaiauryahapawrihorahihais
