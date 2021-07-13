@@ -3,13 +3,16 @@ using namespace std;
 
 #define int long long
 #define endl "\n"
+#define all(x) x.begin(),x.end()
 
 #ifndef ONLINE_JUDGE
-#define deb(x) cerr << #x << " ++> "; _print(x); cerr << endl;
+#define deb(x) cerr<<#x<<"=>"; _print(x); cerr<<endl;
 #else
 #define deb(x)
 #endif
 
+int T(1);
+void fastIO();
 template<typename T>        void _print(T n);
 template <class T, class V> void _print(pair <T, V> p);
 template <class T>          void _print(vector <T> v);
@@ -22,29 +25,28 @@ template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-void solve() {
+void testCase() {
     int n,m; read(n,m);
-    int arr[n][m];
+    vector<vector<int>> b(n, vector<int> (m, 0));
     for(int i=0; i<n; i++){
-        for(int j=0; j<m; j++){
-            cin>>arr[i][j];
+        for(int j=0; j<n; j++){
+            cin>>v[i][j];
         }
     }
 }
 
+
 signed main() {
-    /**************************************/
+    /*--------------------------------------*/
+    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-    /**************************************/
-    int T;
+    /*--------------------------------------*/
     cin >> T;
     while (T--) {
-        solve();
+        cerr<<"<------TC------>"<<endl;
+        testCase();
     }
     cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
 }
@@ -83,12 +85,12 @@ void _print(T n) {
 
 template<typename T>
 void _print(vector<T> v) {
-    cerr << '[';
+    cerr << "[ ";
     for (auto val : v) {
         cerr << val;
         cerr << ' ';
     }
-    cerr << ']';
+    cerr << "]";
 }
 template <class T, class V>
 void _print(pair <T, V> p) {
@@ -124,5 +126,10 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
+}
+void fastIO() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
 }
 
