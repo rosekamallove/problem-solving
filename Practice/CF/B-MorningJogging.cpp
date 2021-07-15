@@ -26,13 +26,6 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
-    int n,m; read(n,m);
-    vector<vector<int>> b(n, vector<int> (m, 0));
-    for(int i=0; i<n; i++){
-        for(int j=0; j<n; j++){
-            cin>>v[i][j];
-        }
-    }
 }
 
 

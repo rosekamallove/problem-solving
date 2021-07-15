@@ -26,25 +26,8 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
-    fastIO();
-    int N, Q; read(N, Q);
-    bool nOdd; N&1 ? nOdd = 1 : nOdd = 0;
-    vector<int> a(N); readContainer(a);
-    sort(all(a));
-    while(Q--) {
-        int x;
-        read(x);
-        auto idx = lower_bound(all(a), x) - a.begin();
-        if(a[idx] == x) {
-            cout<<0<<endl;
-        } else {
-            if(!nOdd) {
-                cout<<(idx & 1 ? "NEGATIVE" : "POSITIVE" )<<endl;
-            } else {
-                cout<<(not(idx & 1) ? "NEGATIVE" : "POSITIVE" )<<endl;
-            }
-        }
-    }
+    int n; read(n);
+    string s; read(s);
 }
 
 
@@ -55,6 +38,7 @@ signed main() {
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+    cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
         testCase();
