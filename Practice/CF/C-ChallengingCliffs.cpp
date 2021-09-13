@@ -1,3 +1,8 @@
+/* 
+ * WebSite: https://rosekamallove.github.io/rosek
+ * GitHub : https://github.com/rosekamallove
+ */
+
 #include "bits/stdc++.h"
 using namespace std;
 
@@ -11,38 +16,25 @@ using namespace std;
 #define deb(x)
 #endif
 
+int T(1);
 void fastIO();
-template<typename T>void _print(T n);
-template<class T>void _print(vector<T>v);
-template<typename... T>void read(T&... args);
-template<typename T>void readContainer(T &t);
+
+template<typename T>        void _print(T n);
+template <class T, class V> void _print(pair <T, V> p);
+template <class T>          void _print(vector <T> v);
+template <class T>          void _print(set <T> v);
+template <class T, class V> void _print(map <T, V> v);
+template <class T>          void _print(multiset <T> v);
+template<typename... T>     void read(T&... args);
+template<typename... T>     void write(string delimiter, T &&...args);
+template<typename T>        void readContainer(T &t);
+template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-void testCase(/* SampleTestCases!! */) {
+void testCase() {
     int n; read(n);
-    vector<int> h(n);
-    readContainer(h);
-    sort(all(h));
-    int idx, mn(INT_MAX);
-    
-    if(n == 2){
-        cout<<h[0]<<' '<<h[1]<<endl;
-        return;
-    }
-
-    for(int i=1; i<n; i++){
-        if(mn > abs(h[i] - h[i-1])){
-            idx = i;
-            mn = abs(h[i] - h[i-1]);
-        }
-    }
-    for(int i=idx; i<n; i++){
-        cout<<h[i]<<' ';
-    }
-    for(int i=0; i<idx; i++){
-        cout<<h[i]<<' ';
-    } cout<<endl;
 }
+
 
 signed main() {
     /*--------------------------------------*/
@@ -51,41 +43,93 @@ signed main() {
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
-    int T(1);
     cin >> T;
     while (T--) {
-        cerr<<endl;
+        cerr<<"<------TC------>"<<endl;
         testCase();
     }
-    cerr<<endl;
     cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
 }
 
 
 //----------------------------------------------------------------------------------------------------//
-template <typename... T>void read(T &...args) {
-    ((cin>>args),...);
+template <typename... T>
+void read(T &...args) {
+    ((cin >> args), ...);
 }
-template<typename T>void readContainer(T&t) {
-    for(auto&e:t) {
+
+template <typename... T>
+void write(string delimiter, T &&...args) {
+    ((cout << args << delimiter), ...);
+}
+
+template <typename T>
+void readContainer(T &t) {
+    for (auto &e : t) {
         read(e);
     }
 }
-template<typename T>void _print(T n) {
+
+template <typename T>
+void writeContainer(string delimiter, T &t) {
+    for (const auto &e : t) {
+        write(delimiter, e);
+    }
+    write("\n");
+}
+
+template<typename T>
+void _print(T n) {
     cerr << n;
+}
+
+template<typename T>
+void _print(vector<T> v) {
+    cerr << "[ ";
+    for (auto val : v) {
+        cerr << val;
+        cerr << ' ';
+    }
+    cerr << "]";
+}
+template <class T, class V>
+void _print(pair <T, V> p) {
+    cerr << "{";
+    _print(p.first);
+    cerr << ",";
+    _print(p.second);
+    cerr << "}";
+}
+
+template <class T>
+void _print(set <T> v) {
+    cerr << "[ ";
+    for (T i : v) {
+        _print(i);
+        cerr << " ";
+    }
+    cerr << "]";
+}
+template <class T> void _print(multiset <T> v) {
+    cerr << "[ ";
+    for (T i : v) {
+        _print(i);
+        cerr << " ";
+    }
+    cerr << "]";
+}
+
+template <class T, class V> void _print(map <T, V> v) {
+    cerr << "[ ";
+    for (auto i : v) {
+        _print(i);
+        cerr << " ";
+    }
+    cerr << "]";
 }
 void fastIO() {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-}
-
-template<typename T>void _print(vector<T> v) {
-    cerr << '[';
-    for (auto val : v) {
-        cerr << val;
-        cerr << ' ';
-    }
-    cerr << ']';
 }
 
