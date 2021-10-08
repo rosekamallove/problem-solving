@@ -7,7 +7,7 @@ bool isPresent(int input[], int size, int x) {
     return isPresent(input + 1, size - 1, x);
 }
 
-int main(){
+int main() {
     int arr[3] = {9,8,10};
     cout<<isPresent(arr, 3, 7)<<endl;
 }
