@@ -24,90 +24,11 @@ template<typename... T>     void write(string delimiter, T &&...args);
 template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
-bool isStringPresentInVector(vector<string> v, string s) {
-    int temp(0);
-    for(int i=0; i<s.size(); i++) {
-        if(v[i] == s) {
-            temp++;
-        }
-    }
-    return !(temp == 1);
-}
-
-void crapSolutin() {
-    int n;
-    cin>>n;
-    cout<<n<<endl;
-    float bigTime = 0;
-
-    vector<string> v(n);
-    for(int i=0; i<n; i++)
-        cin>>v[i];
-
-    for(int k=0; k<n; k++) {
-        string s = v[k];
-        cout<<s<<endl;
-        float time(0.2);
-
-        for(int i=1; i<s.size(); i++) {
-            if(s[i] == 'd' or s[i] == 'f') {
-                if(s[i - 1] == 'd' or s[i - 1] == 'f') {
-                    time += 0.4;
-                } else {
-                    time += 0.2;
-                }
-            } else {
-                if(s[i - 1] == 'j' or s[i - 1] == 'k') {
-                    time += 0.4;
-                } else {
-                    time += 0.2;
-                }
-            }
-        }
-        deb(time);
-        if(isStringPresentInVector(v, s)) {
-            deb(time/2);
-            bigTime += time/2;
-        } else {
-            bigTime += time;
-        }
-    }
-    cout<<bigTime * 10<<endl;
-}
 
 void testCase() {
-    int ans = 0,temp,flag, n;
-    string s;
-    cin>>n;
-    unordered_map <string,int> umap;
-    ans = 0;
-    for(int i=0; i<n; i++) {
-        temp = 0;
-        flag = 1;
-        cin>>s;
-        if(umap.find(s)!=umap.end()) {
-            ans += umap[s]/2;
-            continue;
-        }
-        temp += 2;
-        if(s[0]=='d' || s[0]=='f') flag=0;
-        for(int i=1; i<s.length(); i++) {
-            if((s[i]=='d' || s[i]=='f')) {
-                if(flag == 0) temp += 4;
-                else temp += 2;
-                flag = 0;
-            }
-            else {
-                if(flag == 0) temp += 2;
-                else temp += 4;
-                flag = 1;
-            }
-        }
-        umap[s] = temp;
-        ans += temp;
-    }
-    cout<<ans<<endl;
-    umap.clear();
+    int n; cin>>n;
+    vector<int> a(n), b(n);
+    readContainer(a), readContainer(b);
 }
 
 
