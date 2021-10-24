@@ -26,7 +26,44 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
+    string s; cin>>s;
+    int n = s.size(), l(0), r(0);
+    bool noOneFound = 1, noZeroesFound = 1;
+    for(int i=0; i<n;i++){
+        if(s[i] == '1'){
+            noOneFound = 0;
+        } else if(s[i] == '0'){
+            noZeroesFound = 0;
+        }
+    }
+    if(noOneFound){
+        cout<<"NO"<<endl;
+        return;
+    } else if(noZeroesFound){
+        cout<<"YES"<<endl;
+        return;
+    }
 
+    for(int i=0; i<n; i++){
+        if(s[i] == '1'){
+            l = i;
+            break;
+        }
+    }
+    for(int i=n-1; i>=0; i--){
+        if(s[i] == '1'){
+            r = i;
+            break;
+        }
+    }
+
+    for(int i=l; i<=r; i++){
+        if(s[i] == '0'){
+            cout<<"NO"<<endl;
+            return;
+        }
+    }
+    cout<<"YES"<<endl;
 }
 
 
