@@ -3,7 +3,7 @@ using namespace std;
 
 class Solution{
     public:
-    void update(int a[], int n, int updates[], int k) {
+    void update(int a[], int n, const int updates[], int k) {
         for(int i=0; i<k; i++){
             a[updates[i]]++;
         }
