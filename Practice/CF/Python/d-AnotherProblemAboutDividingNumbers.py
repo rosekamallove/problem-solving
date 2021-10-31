@@ -70,6 +70,11 @@ def testCase():
 
 
 # --------------------------------------------------------------------------------------
-pre()
-for i in range(int(input())):
-    testCase()
+
+def solution():
+    pre()
+    for _ in range(int(input())):
+        testCase()
+
+
+solution()

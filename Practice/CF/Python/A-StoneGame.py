@@ -20,7 +20,7 @@ def testCase():
 
 
 def solution():
-    for i in range(int(input())):
+    for _ in range(int(input())):
         testCase()
 
 
