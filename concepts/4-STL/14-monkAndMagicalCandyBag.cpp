@@ -21,22 +21,24 @@ void solve()
     cin >> T;
     while (T--)
     {
-        int n, k,mx(0); cin>>n>>k;
+        int n, k, mx(0);
+        cin >> n >> k;
         multiset<int> m;
-        rep(i,n)
+        rep(i, n)
         {
-            int temp; cin>>temp;
+            int temp;
+            cin >> temp;
             m.insert(temp);
         }
         rep(i, k)
         {
-           auto it = (--m.end()); 
-           int temp = *it;
-           mx += temp;
-           m.erase(it);
-           m.insert(temp/2);
+            auto it = (--m.end());
+            int temp = *it;
+            mx += temp;
+            m.erase(it);
+            m.insert(temp / 2);
         }
-        cout<<mx<<endl;
+        cout << mx << endl;
     }
 }
 
@@ -52,9 +54,9 @@ int Power(int x, int n, int M)
 {
     if (n == 0)
         return 1;
-    else if (n % 2 == 0) //n is even
+    else if (n % 2 == 0) // n is even
         return Power((x * x) % M, n / 2, M);
-    else //n is odd
+    else // n is odd
         return (x * Power((x * x) % M, (n - 1) / 2, M)) % M;
 }
 

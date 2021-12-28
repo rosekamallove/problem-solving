@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -17,9 +17,9 @@ int main()
     s.push(4);
     s.push(5);
 
-    while(!s.empty())
+    while (!s.empty())
     {
-        cout<<s.top()<<endl;
+        cout << s.top() << endl;
         s.pop();
     }
 }

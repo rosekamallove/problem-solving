@@ -1,5 +1,5 @@
-//LIFO
-#include<iostream>
+// LIFO
+#include <iostream>
 using namespace std;
 
 int main()
@@ -13,5 +13,4 @@ int main()
    * => st.empty()
    * => st.clear()
    */
-
 }

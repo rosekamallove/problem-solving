@@ -1,7 +1,7 @@
-//print distinct charachters
+// print distinct charachters
 
-#include<iostream>
-#include<set>
+#include <iostream>
+#include <set>
 using namespace std;
 
 int main()
@@ -11,25 +11,27 @@ int main()
    * => set always stores in sorted order
    */
   set<char> s;
-  int n; cin>>n;
+  int n;
+  cin >> n;
   char a[n];
-  for(int i=0; i<n; i++)
+  for (int i = 0; i < n; i++)
   {
-    cin>>a[i];
+    cin >> a[i];
     s.insert(a[i]);
   }
 
-  set<char> :: iterator it;
-  for(it = s.begin(); it!=s.end(); it++)
-    cout<<*(it)<<" ";
-  cout<<endl;
+  set<char>::iterator it;
+  for (it = s.begin(); it != s.end(); it++)
+    cout << *(it) << " ";
+  cout << endl;
 
   //=> searching:
-  char X; cin>>X;
+  char X;
+  cin >> X;
   it = s.find(X);
-  if(it!=s.end())
+  if (it != s.end())
   {
-    cout<<*(it)<<endl;
+    cout << *(it) << endl;
   }
 
   /*
@@ -38,4 +40,3 @@ int main()
    * searching -> log(n)
    */
 }
-

@@ -1,10 +1,10 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
     /*
-     * Queue -> FIFO (First In First Out) 
+     * Queue -> FIFO (First In First Out)
      *
      * q.push() => adds an element at the end of the queue
      * q.pop()  => removes the first element int the queue
@@ -18,9 +18,9 @@ int main()
     q.push("asd");
     q.push("dsf");
 
-    while(!q.empty())
+    while (!q.empty())
     {
-        cout<<q.front()<<endl;
+        cout << q.front() << endl;
         q.pop();
     }
 }

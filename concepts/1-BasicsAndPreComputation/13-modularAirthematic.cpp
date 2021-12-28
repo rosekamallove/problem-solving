@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
@@ -14,13 +14,14 @@ int main()
   ->mulitplicative inverse, as this number is prime
   */
 
-  //Given N, print its factorial
-  //print modulo M
+  // Given N, print its factorial
+  // print modulo M
 
-  int n; cin>>n;
+  int n;
+  cin >> n;
   long long fact = 1;
   int m = 47;
-  for(int i=2; i<=n; ++i) fact=(fact*i)%m;
-  cout<<fact;
+  for (int i = 2; i <= n; ++i)
+    fact = (fact * i) % m;
+  cout << fact;
 }
-

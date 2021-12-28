@@ -1,22 +1,23 @@
 // find the frequency of names
 
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-  map<string,int> m;
-  int n; cin>>n;
+  map<string, int> m;
+  int n;
+  cin >> n;
   string a[n];
-  for(int i=0; i<n; i++)
+  for (int i = 0; i < n; i++)
   {
-    cin>>a[i];
+    cin >> a[i];
     m[a[i]]++;
   }
-  map<string, int> :: iterator it;
+  map<string, int>::iterator it;
 
-  for(it = m.begin();it!=m.end(); it++)
+  for (it = m.begin(); it != m.end(); it++)
   {
-    cout<<it->first<<' '<<it->second<<endl;
+    cout << it->first << ' ' << it->second << endl;
   }
 }
