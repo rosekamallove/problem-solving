@@ -1,4 +1,3 @@
-
 def testCase():
     size = int(input())
     arr = [int(el) for el in input().split()]
