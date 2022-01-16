@@ -56,3 +56,4 @@
 **Intersection of two arrays**
 
 - Very simple, if both the elements are equal only then push to the array.
+- And to check the duplicates we can simply keep a `prev` variable
