@@ -18,74 +18,115 @@
 #include<iostream>
 using namespace std;
 
-struct Node {
-    Node* next;
+class Node {
+public:
     int data;
+    Node* next;
+
+    Node(int data) {
+        this -> data = data;
+        this -> next = NULL;
+    }
+    ~Node() {
+        if(this -> next != NULL) {
+            delete next;
+            this -> next = NULL;
+        }
+    }
 };
 
-Node* head = NULL;
+int size(Node* &head) {
+    int size(0);
+    Node * itr = head;
+    while(itr != NULL) {
+        itr = itr -> next;
+        size++;
+    }
+    return size;
+}
 
-/* Insertion */
-void insertTail(int data) {
-    Node* newNode = new Node();
-    newNode->data = data;
+void InsertAtHead(Node* &head, int data) {
+    Node* temp = new Node(data);
+    temp -> next = head;
+    head = temp;
+}
 
-    if(head == NULL) {
-        head = newNode;
+void InsertAtTail(Node* &tail, int data) {
+    Node* newNode = new Node(data);
+    tail -> next = newNode;
+    tail = newNode;
+}
+
+void InsetAtIndex(Node* &head, int idx, int data) {
+    Node * newNode = new Node(data);
+
+    Node* prev = head;
+    int cnt(1);
+
+    while(cnt < idx - 1) {
+        prev = prev -> next;
+        cnt++;
+    }
+
+    /* Edge Cases */
+    int len = size(head);
+    if(idx > len) {
+        cout<<"Invalid Index";
+        return;
+    }
+    if(idx == len) {
+        InsertAtTail(prev, data);
+        return;
+    }
+    if(idx == 1) {
+        InsertAtHead(head, data);
         return;
     }
 
+    newNode -> next = prev -> next;
+    prev -> next = newNode;
+}
+
+void deleteNode(int pos, Node* &head) {
+    if(pos == 1) {
+        Node* temp = head;
+        head = head -> next;
+        temp -> next = NULL;
+        delete temp;
+        return;
+    } 
+    int cnt(1);
+    Node* curr = head;
+    Node* prev = NULL;
+
+    while(cnt < pos) {
+        prev = curr;
+        curr = curr -> next;
+        cnt++;
+    }
+    prev -> next = curr -> next;
+    curr -> next = NULL;
+    delete curr;
+}
+
+void print(Node* &head) {
     Node* temp = head;
-    while(temp->next!=NULL) {
-        //making temp to be the last elementin in the linked list
-        temp = temp->next;
+    while(temp != NULL) {
+        cout<<temp -> data<<' ';
+        temp = temp -> next;
     }
-    temp->next = newNode;
-    newNode->next = NULL;
+    cout<<endl;
 }
 
-void insertHead(int data) {
-    Node* newNode = new Node();
-    newNode->data = data;
 
-    if(head == NULL) {
-        head = newNode;
-        return;
-    }
-    newNode->next = head;
-    head = newNode;
-}
-
-void insertAfterNode(int value, int data) {
-    value--;
-    Node* newNode = new Node();
-    newNode->data = data;
-
-    if(head == NULL) {
-        head = newNode;
-        return;
-    }
-
-    Node* nth = head;
-    while(nth->next!=NULL and value>0) {
-        nth = nth->next;
-        value--;
-    }
-    Node* prev = nth->next;
-    nth->next = newNode;
-    newNode->next = prev;
-}
-
-/* Searching */
-bool searchNode(int value) {
-    Node* itr = head;
-    if(itr->data == value)
-        return 1;
-
-    while(itr->next!=NULL) {
-        itr = itr->next;
-        if(itr->data == value)
-            return 1;
-    }
-    return 0;
+int main() {
+    Node* Head = new Node(0);
+    Node* Tail = Head;
+    InsertAtTail(Tail, 1);
+    InsertAtTail(Tail, 2);
+    InsertAtTail(Tail, 3);
+    InsertAtTail(Tail, 4);
+    print(Head);
+    deleteNode(1, Head);
+    print(Head);
 }
