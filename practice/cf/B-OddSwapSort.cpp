@@ -25,45 +25,21 @@ template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-
-/** [ Linear Search ] **/
-void linearSearch() {
-    int n;
-    cin>>n;
-    int x(1), height(0);
-    while(true) {
-        n -= x;
-        if(n < 0) break;
-        height++;
-        x++;
-    }
-    cout<<height<<endl;
-}
-
-
-/** [ Binary Search ] **/
-
-bool possible(int mid, int n) {
-    return ((mid * (mid + 1))/2) <= n;
-}
-
 void testCase() {
-    /* "height" is what we have to search */
     int n; cin>>n;
-    int low(0), high(n), ans(0);
+    vector<int> v(n);
+    readContainer(v);
 
-    while(low <= high) {
-        int mid = low + (high - low) / 2;
+    vector<int> od, ev;
 
-        if(possible(mid, n)) {
-            ans = mid;
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
+    for(int &x : v) {
+        if(x % 2) od.push_back(x);
+        else ev.push_back(x);
     }
 
-    cout<<ans<<endl;
+    if(is_sorted(all(od)) && is_sorted(all(ev))) cout<<"Yes"<<endl;
+    else cout<<"No"<<endl;
+
 }
 
 
