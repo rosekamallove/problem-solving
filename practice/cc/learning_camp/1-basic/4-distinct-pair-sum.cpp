@@ -26,33 +26,36 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
-    int n, possible(0); cin>>n;
-    vector<int> a(n), b(n);
-    readContainer(a);
-    readContainer(b);
+    int l, r; cin>>l>>r;
+    /*
+     * Brute force would be to generate all the sums
+     * then purge the repeating elements
+     * O(n*n)
+     */
 
-    for(int i=0; i<n; i++){
-        if(!i){
-            if(b[i] <= a[i]){
-                possible++;
-            }
-        } else {
-            if(a[i] - a[i - 1] >= b[i]){
-                possible++;
-            }
-        }
-    }
-    cout<<possible<<endl;
+    /*
+     * take the lower limit of sum i.e  l + l
+     * take the uppper limit of sum i.e r + r
+     * all the numbers between these limits will be present in the sum array,
+     *
+     * this can be proved by the following:
+     * S + 1 and S - 1 can be obtained by incrementing or decrementing x or y
+     * but if we cannot increment or decrement, it means we've reached the range end points
+     */
+    cout<<(r*2 - l*2) + 1<<endl;
+
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -136,10 +139,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 

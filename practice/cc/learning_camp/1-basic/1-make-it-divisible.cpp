@@ -24,74 +24,26 @@ template<typename... T>     void write(string delimiter, T &&...args);
 template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
-//
-void crapSolution() {
-    int n; string s;
-    cin>>n>>s;
-    bool wasH = 0;
-    bool firstH = 0;
-    for(int i=0; i<n; i++){
-        if(s[i] == 'H'){
-            if(wasH){
-                cout<<"Invalid"<<endl;
-                return;
-            }
-            wasH = 1;
-            if(!firstH){
-                firstH = 1;
-            }
-        } else if(s[i] == 'T'){
-            if(!firstH){
-                cout<<"Invalid"<<endl;
-                return;
-            }
-            if(wasH){
-                wasH = 0;
-            }
-        }
-    }
-    if(s[n-1] == 'H'){
-        cout<<"Invalid"<<endl;
-        return;
-    }
-    cout<<"Valid"<<endl;
-}
 
 void testCase() {
-    int n; string c;
-    cin>>n>>c;
-    string s;
-    for(int i=0; i<n; i++){
-        if(c[i] != '.'){
-            s += c[i];
-        }
+    int n; cin>>n;
+    for(int i=1; i<=n; i++) {
+        if(i == 1 or i == n) cout<<'3';
+        else cout<<'0';
     }
-    if(s.size() % 2){
-        cout<<"Invalid"<<endl;
-        return;
-    } 
-    for(int i=0; i<s.size(); i++){
-        if(i % 2){
-            if(s[i] != 'T'){
-                cout<<"Invalid"<<endl;
-                return;
-            }
-        } else if(s[i] != 'H'){
-                cout<<"Invalid"<<endl;
-                return;
-        }
-    }
-    cout<<"Valid"<<endl;
+    cout<<endl;
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -175,10 +127,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 

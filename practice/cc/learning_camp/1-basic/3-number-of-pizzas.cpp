@@ -25,30 +25,19 @@ template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
-void testCase() {
-    int n,k,count(0); read(n,k);
-    vector<int> v(n);
-    readContainer(v);
-    sort(v.rbegin(), v.rend());
-    for(int i=0; i<n; i++){
-        if(v[i] >= v[k-1])
-            count++;
-    }
-    cout<<count<<endl;
-}
-
-
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
-        cerr<<"<------TC------>"<<endl;
-        testCase();
+        int n, k; cin>>n>>k;
+        cout<<n/__gcd(n,k)<<endl;
     }
     cerr << "Time : " << 1000 * ((double)clock()) / (double)CLOCKS_PER_SEC << "ms\n";
 }
@@ -128,10 +117,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 

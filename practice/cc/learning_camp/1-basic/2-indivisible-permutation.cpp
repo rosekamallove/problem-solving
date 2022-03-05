@@ -24,47 +24,35 @@ template<typename... T>     void write(string delimiter, T &&...args);
 template<typename T>        void readContainer(T &t);
 template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
+void rotate(vector<int> &arr, int n) {
+    int x = arr[n - 1], i;
+    for (i = n - 1; i > 0; i--)
+    arr[i] = arr[i - 1];
+    arr[0] = x;
+}
 
 void testCase() {
     int n; cin>>n;
-
-    if(!n%2) {
-        cout<<"no"<<endl;
-        return;
-    }
-
     vector<int> v(n);
-    readContainer(v);
+    for(int i=0; i<n; i++) v[i] = i + 1;
 
-    if(v[0] != 1 or v[n-1] != 1 ){
-            cout<<"no"<<endl;
-            return;
-    }
+    /* We can also just do odd even */
+    rotate(v, n);
 
-    for(int i=1; i<=n/2; i++) {
-        if(v[i] != v[i - 1] + 1) {
-            cout<<"no"<<endl;
-            return;
-        }
-    }
-
-    for(int i=n/2 + 1; i<n; i++) {
-        if(v[i] != v[i - 1] - 1) {
-            cout<<"no"<<endl;
-            return;
-        }
-    }
-    cout<<"yes"<<endl;
+    for(int &x : v) cout<<x<<' ';
+    cout<<endl;
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -148,10 +136,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 
