@@ -27,34 +27,79 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 
 void testCase() {
     int n; cin>>n;
-    vector<int> v(n), ans(n);
-    readContainer(v);
-    sort(all(v));
+    vector<int> a(n), b(n);
+    readContainer(a);
+    readContainer(b);
 
-    ans[0] = v[0];
-    ans[n - 1] = v[1];
+    vector<int> ans;
 
-    int itr = 2;
-    for(int i=0; i<n; i++) {
-        if(i == 0 or i == n - 1) continue;
-        ans[i] = v[itr];
-        itr++;
-        if(itr == n) break;
+    int mina(INT_MAX), minb(INT_MAX);
+    for(int i=1; i<n - 1; i++) {
+        mina = min(a[i], mina);
+        minb = min(b[i], minb);
     }
-    for(int &x : ans) {
-        cout<<x<<' ';
+    
+    {// Case 1
+        int temp = abs(a[0] - b[0]) + abs(a[n-1] - b[n - 1]);
+        ans.push_back(temp);
     }
-    cout<<endl;
+
+    {//Case 2
+        int temp = abs(a[0] - b[0]);
+        temp += abs(a[n - 1] - minb);
+        temp += abs(mina - b[n - 1]);
+        ans.push_back(temp);
+    }
+
+    {// Case 3
+        int temp = abs(a[n-1] - b[n - 1]);
+        temp += abs(a[0] - minb);
+        temp += abs(mina - b[0]);
+        ans.push_back(temp);
+    }
+
+    {// Case 4
+        int temp = abs(a[0] - minb) + abs(a[n - 1] - minb);
+        temp += abs(mina - b[0]) + abs(mina - b[n - 1]);
+        ans.push_back(temp);
+    }
+
+    {// Case 5
+        int temp = abs(a[0] - b[n - 1]) + abs(a[n - 1] - b[0]);
+        ans.push_back(temp);
+    }
+
+    {// Case 6
+        int temp = abs(a[0] - b[n - 1]);
+        temp += abs(mina - b[0]);
+        temp += abs(a[n - 1] - minb);
+        ans.push_back(temp);
+    }
+
+    {// Case 7
+        int temp = abs(a[n - 1] - b[0]);
+        temp += abs(a[0] - minb);
+        temp += abs(mina - b[n - 1]);
+        ans.push_back(temp);
+    }
+    int result(INT_MAX);
+
+    for(auto &x : ans) {
+        result = min(result, x);
+    }
+    cout<<result<<endl;
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -138,10 +183,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 

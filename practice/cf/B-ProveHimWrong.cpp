@@ -26,35 +26,40 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
-    int n; cin>>n;
-    vector<int> v(n), ans(n);
-    readContainer(v);
-    sort(all(v));
+    int n;
+    cin>>n;
 
-    ans[0] = v[0];
-    ans[n - 1] = v[1];
+    int idx(0), val(1);
 
-    int itr = 2;
-    for(int i=0; i<n; i++) {
-        if(i == 0 or i == n - 1) continue;
-        ans[i] = v[itr];
-        itr++;
-        if(itr == n) break;
+    vector<int> v;
+
+    while(idx < n) {
+        if(val < 1e9) {
+            v.push_back(val);
+            val *= 3;
+            idx++;
+        } else break;
     }
-    for(int &x : ans) {
-        cout<<x<<' ';
+
+    if(idx == n) {
+        cout<<"YES"<<endl;
+        for(int &x : v) cout<<x<<' ';
+        cout<<endl;
+    } else {
+        cout<<"NO"<<endl;
     }
-    cout<<endl;
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -139,9 +144,3 @@ template <class T, class V> void _print(map <T, V> v) {
     }
     cerr << "]";
 }
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
-}
-

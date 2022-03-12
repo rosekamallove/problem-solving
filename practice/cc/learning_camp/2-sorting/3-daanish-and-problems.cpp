@@ -26,35 +26,29 @@ template<typename T>        void writeContainer(string delimiter, T &t);
 //----------------------------------------------------------------------------------------------------//
 
 void testCase() {
-    int n; cin>>n;
-    vector<int> v(n), ans(n);
+    vector<int> v(10);
     readContainer(v);
-    sort(all(v));
+    int k; cin>>k;
+    int i(9);
 
-    ans[0] = v[0];
-    ans[n - 1] = v[1];
+    while(k >= v[i]) {
+        k-=v[i];
+        i--;
+    }
 
-    int itr = 2;
-    for(int i=0; i<n; i++) {
-        if(i == 0 or i == n - 1) continue;
-        ans[i] = v[itr];
-        itr++;
-        if(itr == n) break;
-    }
-    for(int &x : ans) {
-        cout<<x<<' ';
-    }
-    cout<<endl;
+    cout<<i + 1<<endl;
 }
 
 
 signed main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
     /*--------------------------------------*/
-    fastIO();
 #ifndef ONLINE_JUDGE
     freopen(".deb.txt", "w", stderr);
 #endif
     /*--------------------------------------*/
+
     cin >> T;
     while (T--) {
         cerr<<"<------TC------>"<<endl;
@@ -138,10 +132,5 @@ template <class T, class V> void _print(map <T, V> v) {
         cerr << " ";
     }
     cerr << "]";
-}
-void fastIO() {
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    cout.tie(NULL);
 }
 
