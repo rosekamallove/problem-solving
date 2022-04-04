@@ -20,36 +20,43 @@ using namespace std; template <typename... T> void read(T &...args) { ((cin >> a
 #define deb(x)
 #endif
 
-bool sorted(vector<int> v) {
-    for(int i=0; i<sz(v) - 1; i++)
-        if(v[i] > v[i + 1]) return 0;
-    return 1;
-}
+struct point {
+    int weight, position, id;
+};
 
 int T(1);
+#define CIN cin>>T;
 void testCase() {
-    int n; cin>>n;
-    vector<int> v(n); readContainer(v);
+    int n, m; cin>>n>>m;
+    vector<point> points(m);
+    for(int i=0; i<m; i++) {
+        cin>>points[i].position>>points[i].weight;
+        points[i].id = i + 1;
+    }
 
-    vector< pair<int, int> > idx;
+    sort(all(points), 
+        [] (point a, point b) {
+            return a.weight < b.weight;
+        }
+    );
+
+    int sum(0);
+    for(int i=0; i<m; i++) {
+        if(i < 2*n) sum += points[i].weight;
+        else points.pop_back();
+    }
+
+    sort(all(points), 
+        [] (point a, point b) {
+            return a.position < b.position;
+        }
+    );
+
+    cout<<sum<<endl;
 
     for(int i=0; i<n; i++) {
-        bool swapped = false;
-        for(int j=i + 1 ; j<n; j++) {
-            if(v[i] > v[j]) {
-                swap(v[i], v[j]);
-                idx.pb(mp(i, j));
-                if(sorted(v)) break;
-                swapped = true;
-            }
-        }
-        if(!swapped) break;
+        cout<<points[i].id<<' '<<points[2*n - i - 1].id<<endl;
     }
-    cout<<sz(idx)<<endl;
-    for(auto x : idx) {
-        cout<<x.first<<' '<<x.second<<' ';
-    }
-    cout<<endl;
 }
 
 
@@ -61,7 +68,7 @@ signed main() {
     freopen(".deb.txt", "w", stderr);
 #endif
 
-//    cin >> T;
+    CIN
     while (T--) {
         testCase();
         cerr<<endl;

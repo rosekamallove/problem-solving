@@ -11,8 +11,7 @@ bool cmp(pair<long long, long long> a, pair<long long, long long> b) {
 
 
 signed main() {
-    int n;
-    cin>>n;
+    int n; cin>>n;
     vector<long long> a(n), b(n);
     for(int i=0; i<n; i++) cin>>a[i];
     for(int i=0; i<n; i++) cin>>b[i];

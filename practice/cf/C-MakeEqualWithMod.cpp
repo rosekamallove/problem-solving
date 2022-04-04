@@ -20,36 +20,20 @@ using namespace std; template <typename... T> void read(T &...args) { ((cin >> a
 #define deb(x)
 #endif
 
-bool sorted(vector<int> v) {
-    for(int i=0; i<sz(v) - 1; i++)
-        if(v[i] > v[i + 1]) return 0;
-    return 1;
-}
 
 int T(1);
+#define CIN cin>>T;
 void testCase() {
     int n; cin>>n;
     vector<int> v(n); readContainer(v);
+    sort(all(v));
 
-    vector< pair<int, int> > idx;
-
+    bool eq(1), is1(0), consec(0);
     for(int i=0; i<n; i++) {
-        bool swapped = false;
-        for(int j=i + 1 ; j<n; j++) {
-            if(v[i] > v[j]) {
-                swap(v[i], v[j]);
-                idx.pb(mp(i, j));
-                if(sorted(v)) break;
-                swapped = true;
-            }
-        }
-        if(!swapped) break;
+        if(v[i] == 1) is1 = 1; 
+        if(i < n - 1 and v[i] + 1 == v[i + 1]) consec = 1;
     }
-    cout<<sz(idx)<<endl;
-    for(auto x : idx) {
-        cout<<x.first<<' '<<x.second<<' ';
-    }
-    cout<<endl;
+    cout<<((is1 and consec) ? "NO" : "YES")<<endl;
 }
 
 
@@ -61,7 +45,7 @@ signed main() {
     freopen(".deb.txt", "w", stderr);
 #endif
 
-//    cin >> T;
+    CIN
     while (T--) {
         testCase();
         cerr<<endl;
