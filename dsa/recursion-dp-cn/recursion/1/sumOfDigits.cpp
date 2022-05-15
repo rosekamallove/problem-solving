@@ -11,4 +11,3 @@ int main(){
     int n; cin>>n;
     cout<<sumOfDigits(n)<<endl;
 }
-
