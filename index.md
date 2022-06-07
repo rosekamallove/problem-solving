@@ -1,6 +1,9 @@
 # DSA Notes
 
-### Hashing
+<details>
+    <summary>
+    <h3>Hashing</h3>
+    </summary>
 
 -   Two Sum
     [https://leetcode.com/problems/two-sum/](https://leetcode.com/problems/two-sum/)
@@ -276,7 +279,8 @@
     [https://leetcode.com/problems/xor-queries-of-a-subarray/](https://leetcode.com/problems/xor-queries-of-a-subarray/)
 
     -   Code
-        ```cpp
+
+        ````cpp
         class Solution {
         public:
         vector<int> xorQueries(vector<int>& arr, vector<vector<int>>& queries) {
@@ -309,6 +313,8 @@
             ```
 
         [https://www.codingninjas.com/codestudio/problems/1115652?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=1](https://www.codingninjas.com/codestudio/problems/1115652?topList=striver-sde-sheet-problems&utm_source=striver&utm_medium=website&leftPanelTab=1)
+
+        ````
 
     -   Naive
         -   Just create all the subarray and find the xor of each and update the counter
@@ -345,72 +351,77 @@
 -   Longest Substring Without repeating Characters
     [https://leetcode.com/problems/longest-substring-without-repeating-characters/](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
 
-    -   Naive
-        -   Generate all the substrings and find the longest substring without repeating characters and voila we have the answer
-        -   O(n^3) or O(n^2)
-    -   Optimised
+        -   Naive
+            -   Generate all the substrings and find the longest substring without repeating characters and voila we have the answer
+            -   O(n^3) or O(n^2)
+        -   Optimised
 
-        -   We’re gonna have two pointers l and r initialised both to zero
-        -   Then we’re gonna check if s[r] is present int the hasSet or not
-        -   if it is not present, it means that it is not repeating so we’ll update the maxLen with r - l + 1
-        -   But if it is present, then we’ll increment l and remove s[l] from the set until s[r] is not present int the set. And then when it is not present in the set, we can update the maxLen again with r - l + 1
-        -   Complexity: O(2N) time and O(N) Space
-        -   Code
+            -   We’re gonna have two pointers l and r initialised both to zero
+            -   Then we’re gonna check if s[r] is present int the hasSet or not
+            -   if it is not present, it means that it is not repeating so we’ll update the maxLen with r - l + 1
+            -   But if it is present, then we’ll increment l and remove s[l] from the set until s[r] is not present int the set. And then when it is not present in the set, we can update the maxLen again with r - l + 1
+            -   Complexity: O(2N) time and O(N) Space
+            -   Code
 
-            ```cpp
-            class Solution {
-            public:
-                int lengthOfLongestSubstring(string s) {
-                    set<char> st;
+                ```cpp
+                class Solution {
+                public:
+                    int lengthOfLongestSubstring(string s) {
+                        set<char> st;
 
-                    int l(0), r(0), maxLen(0);
+                        int l(0), r(0), maxLen(0);
 
-                    while(l < s.size() and r < s.size()) {
-                        if(st.find(s[r]) == st.end()) {
-                            maxLen = max(r - l + 1, maxLen);
-                            st.insert(s[r++]);
-                        } else {
-                            while(st.find(s[r]) != st.end()) {
-                                st.erase(s[l++]);
+                        while(l < s.size() and r < s.size()) {
+                            if(st.find(s[r]) == st.end()) {
+                                maxLen = max(r - l + 1, maxLen);
+                                st.insert(s[r++]);
+                            } else {
+                                while(st.find(s[r]) != st.end()) {
+                                    st.erase(s[l++]);
+                                }
+                                maxLen = max(r - l + 1, maxLen);
+                                st.insert(s[r++]);
                             }
-                            maxLen = max(r - l + 1, maxLen);
-                            st.insert(s[r++]);
                         }
+                        return maxLen;
                     }
-                    return maxLen;
-                }
-            };
-            ```
+                };
+                ```
 
-    -   Best
+        -   Best
 
-        -   We can optimise out approach more by removing the left pointer increment
-        -   It would be nice if we can make a jump directly, without going through each character instead jump to the one which is non-repeating
-        -   We can do this by storing the index too.
-        -   Code
+            -   We can optimise out approach more by removing the left pointer increment
+            -   It would be nice if we can make a jump directly, without going through each character instead jump to the one which is non-repeating
+            -   We can do this by storing the index too.
+            -   Code
 
-            ```cpp
-            class Solution {
-            public:
-                int lengthOfLongestSubstring(string s) {
-                    map<char, int> mp;
+                ```cpp
+                class Solution {
+                public:
+                    int lengthOfLongestSubstring(string s) {
+                        map<char, int> mp;
 
-                    int l(0), r(0), maxLen(0);
+                        int l(0), r(0), maxLen(0);
 
-                    while(r < s.size()) {
-                        if(mp.find(s[r])  != mp.end())
-                            l = max(mp[s[r]] + 1, l);
+                        while(r < s.size()) {
+                            if(mp.find(s[r])  != mp.end())
+                                l = max(mp[s[r]] + 1, l);
 
-                        mp[s[r]] = r;
-                        maxLen = max(r - l + 1, maxLen);
-                        r++;
+                            mp[s[r]] = r;
+                            maxLen = max(r - l + 1, maxLen);
+                            r++;
+                        }
+                        return maxLen;
                     }
-                    return maxLen;
-                }
-            };
-            ```
+                };
+                ```
 
-### Linked List
+    </details>
+
+<details>
+    <summary>
+    <h3>Linked List</h3>
+    </summary>
 
 -   Reverse a Linked List
     [https://leetcode.com/problems/reverse-linked-list/submissions/](https://leetcode.com/problems/reverse-linked-list/submissions/)
@@ -1410,7 +1421,12 @@
             };
             ```
 
-### Two Pointer
+            </details>
+
+<details>
+    <summary>
+    <h3>Two Pointer</h3>
+    </summary>
 
 -   3 Sum
     [https://leetcode.com/problems/3sum/](https://leetcode.com/problems/3sum/)
@@ -1671,7 +1687,12 @@
     };
     ```
 
-### Greedy
+    </details>
+
+<details>
+    <summary>
+    <h3>Greedy</h3>
+    </summary>
 
 -   N Meetings in one Room
     [https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1](https://practice.geeksforgeeks.org/problems/n-meetings-in-one-room-1587115620/1)
@@ -1833,44 +1854,49 @@
 -   Fractional Knapsack
     [https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1](https://practice.geeksforgeeks.org/problems/fractional-knapsack-1587115620/1)
 
-    -   We will look for `value/weight` Maximum.
-    -   So we’ll sort both the array this way.
-    -   Code
+            -   We will look for `value/weight` Maximum.
+            -   So we’ll sort both the array this way.
+            -   Code
 
-        ```cpp
-        class Solution
-        {
-            public:
-            //Function to get the maximum total value in the knapsack.
-            double fractionalKnapsack(int W, Item arr[], int n)
-            {
-                sort(arr, arr + n,
-                [](Item a, Item b) {
-                    double r1 = (double)a.value/(double)a.weight;
-                    double r2 = (double)b.value/(double)b.weight;
-                    return r1 > r2;
-                });
+                ```cpp
+                class Solution
+                {
+                    public:
+                    //Function to get the maximum total value in the knapsack.
+                    double fractionalKnapsack(int W, Item arr[], int n)
+                    {
+                        sort(arr, arr + n,
+                        [](Item a, Item b) {
+                            double r1 = (double)a.value/(double)a.weight;
+                            double r2 = (double)b.value/(double)b.weight;
+                            return r1 > r2;
+                        });
 
-                int currWeight(0);
-                double finalValue(0.0);
+                        int currWeight(0);
+                        double finalValue(0.0);
 
-                for(int i=0; i<n; i++) {
-                    if(currWeight + arr[i].weight <= W) {
-                        currWeight += arr[i].weight;
-                        finalValue += arr[i].value;
+                        for(int i=0; i<n; i++) {
+                            if(currWeight + arr[i].weight <= W) {
+                                currWeight += arr[i].weight;
+                                finalValue += arr[i].value;
+                            }
+                            else {
+                                int r = W - currWeight;
+                                finalValue += (arr[i].value / (double)arr[i].weight) * (double)r;
+                                break;
+                            }
+                        }
+                        return finalValue;
                     }
-                    else {
-                        int r = W - currWeight;
-                        finalValue += (arr[i].value / (double)arr[i].weight) * (double)r;
-                        break;
-                    }
-                }
-                return finalValue;
-            }
-        };
-        ```
+                };
+                ```
 
-### Recursion
+    </details>
+
+<details>
+    <summary>
+    <h3>Recursion</h3>
+    </summary>
 
 -   Subset Sums
     [https://practice.geeksforgeeks.org/problems/subset-sums2234/1](https://practice.geeksforgeeks.org/problems/subset-sums2234/1)
@@ -2018,47 +2044,52 @@
 -   Combination Sum 2
     [https://leetcode.com/problems/combination-sum-ii/](https://leetcode.com/problems/combination-sum-ii/)
 
-    -   The solution to this problem is similar to similar to Subset Generation II, so what we can do is, we can take the first occurrence of the element if there exists duplicates.
-    -   Then if a[i] > target then we’ll just break out of the loop
-    -   else we’ll do a recursion call with target - a[i]
-    -   And the base case will be target == 0
-    -   Complexity: **O(2^n\*k)**
-    -   Code
+        -   The solution to this problem is similar to similar to Subset Generation II, so what we can do is, we can take the first occurrence of the element if there exists duplicates.
+        -   Then if a[i] > target then we’ll just break out of the loop
+        -   else we’ll do a recursion call with target - a[i]
+        -   And the base case will be target == 0
+        -   Complexity: **O(2^n\*k)**
+        -   Code
 
-        ```cpp
-        class Solution {
-        public:
+            ```cpp
+            class Solution {
+            public:
 
-            vector<vector<int>> ans;
+                vector<vector<int>> ans;
 
-            void helper(vector<int> candidates, int target, int i = 0, vector<int> v = {}) {
-                if(target == 0) {
-                    ans.push_back(v);
-                    return;
+                void helper(vector<int> candidates, int target, int i = 0, vector<int> v = {}) {
+                    if(target == 0) {
+                        ans.push_back(v);
+                        return;
+                    }
+
+                    for(int idx = i; i<candidates.size(); i++) {
+                        if(idx != i and candidates[i] == candidates[i - 1]) continue;
+
+                        if(candidates[i] > target) break;
+
+                        v.push_back(candidates[i]);
+                        helper(candidates, target - candidates[i], i + 1, v);
+                        v.pop_back();
+                    }
                 }
 
-                for(int idx = i; i<candidates.size(); i++) {
-                    if(idx != i and candidates[i] == candidates[i - 1]) continue;
+                vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+                    sort(candidates.begin(), candidates.end());
 
-                    if(candidates[i] > target) break;
+                    helper(candidates, target);
 
-                    v.push_back(candidates[i]);
-                    helper(candidates, target - candidates[i], i + 1, v);
-                    v.pop_back();
+                    return ans;
                 }
-            }
+            };
+            ```
 
-            vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
-                sort(candidates.begin(), candidates.end());
+    </details>
 
-                helper(candidates, target);
-
-                return ans;
-            }
-        };
-        ```
-
-### Binary Search
+<details>
+    <summary>
+    <h3>Binary Search</h3>
+    </summary>
 
 -   Single Element in sorted Array
     [https://leetcode.com/problems/single-element-in-a-sorted-array/](https://leetcode.com/problems/single-element-in-a-sorted-array/)
@@ -2152,7 +2183,12 @@
         -   Find the middle voilla we have the median
         -   Complexity: O(n*m) time and O(n*m) space
 
-### Stack and Queues
+</details>
+
+<details>
+    <summary>
+    <h3>Stack and Queues</h3>
+    </summary>
 
 -   Implementation
 
@@ -2476,7 +2512,6 @@
                 };
                 ```
 
--   ## Sort a Stack
 -   Implement LRU Cache
     Implement the **LRUCache** class:
 
@@ -2531,3 +2566,5 @@
              * obj->put(key,value);
              */
             ```
+
+</details>
