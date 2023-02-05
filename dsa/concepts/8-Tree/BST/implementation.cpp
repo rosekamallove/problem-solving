@@ -2,7 +2,6 @@
 #include <cstddef>
 #include <iostream>
 #include <queue>
-#include <utility>
 using namespace std;
 
 void printTree(BinaryTreeNode<int> *root) {
@@ -201,44 +200,6 @@ BinaryTreeNode<int> *buildTree(int *preorder, int preLength, int *inorder,
                                int inLength) {
 
   return buildTreeHelper(inorder, preorder, 0, inLength - 1, 0, preLength - 1);
-}
-
-int diameter(BinaryTreeNode<int> *root) {
-  if (root == NULL)
-    return 0;
-
-  int opt1 = height(root->left) + height(root->right);
-  int opt2 = diameter(root->left);
-  int opt3 = diameter(root->right);
-
-  return max(opt1, max(opt2, opt3));
-}
-
-pair<int, int> heightDiameter(BinaryTreeNode<int> *root) {
-  if (root == NULL)
-    return make_pair(0, 0);
-
-  pair<int, int> leftAns = heightDiameter(root->left);
-  pair<int, int> rightAns = heightDiameter(root->left);
-
-  int ld(leftAns.second), lh(leftAns.first), rd(rightAns.second),
-      rh(rightAns.first);
-
-  int height = 1 + max(lh, rh);
-  int diameter = max(lh + rh, max(ld, rd));
-
-  return make_pair(height, diameter);
-}
-
-int diameterOptimised(BinaryTreeNode<int> *root) {
-  if (root == NULL)
-    return 0;
-
-  int opt1 = height(root->left) + height(root->right);
-  int opt2 = diameter(root->left);
-  int opt3 = diameter(root->right);
-
-  return max(opt1, max(opt2, opt3));
 }
 
 int main() {
