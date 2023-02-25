@@ -123,6 +123,14 @@ int height(BinaryTreeNode<int> *root) {
   return 1 + max(lHeight, rHeight);
 }
 
+bool isBalanced(BinaryTreeNode<int> *root) {
+  if (root == NULL)
+    return true;
+
+  return (isBalanced(root->left) && isBalanced(root->right)) &&
+         height(root->left) - height(root->right) <= 1;
+}
+
 bool isNodePresent(BinaryTreeNode<int> *root, int x) {
   if (root == NULL)
     return false;
